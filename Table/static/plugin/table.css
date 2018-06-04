@@ -1,0 +1,76 @@
+
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+
+table td, th {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 2px 5px;
+  font-size: 16px;
+  height: 60px;
+}
+
+table th { background-color: #f4f4f4; }
+
+table th.title { }
+
+table tr {
+  width: 100%;
+  background-color: #fff;
+}
+
+table td { text-overflow: ellipsis; }
+
+table td.edit {
+  padding: 0px;
+  cursor: pointer;
+}
+
+td.edit input.editcell {
+  font-size: 16px;
+  font-weight: normal;
+  text-align: center;
+  background: white;
+  border: none;
+  color: #666;
+  outline: none;
+  width: 82%;
+  height: 55px;
+  line-height: 55px;
+  margin: 0px;
+  padding: 0px;
+}
+ td.edit input.editcell::-webkit-input-placeholder { /* WebKit browsers */
+ color: #eee;
+}
+td.edit input.editcell:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+ color: #eee;
+ opacity: 1;
+}
+td.edit input.editcell::-moz-placeholder { /* Mozilla Firefox 19+ */
+ color: #eee;
+ opacity: 1;
+}
+td.edit input.editcell:-ms-input-placeholder { /* Internet Explorer 10+ */
+ color: #eee;
+}
+
+td.edit input.error { border: 1px solid red; }
+
+table td.money { /*min-width: 330px;*/
+}
+
+table td.money:before { content: '$ '; }
+
+table td.remove { width: 30px; }
+
+table td.remove button {
+  font-size: 9px;
+  font-weight: bold;
+  color: red;
+  height: 26px;
+  width: 26px;
+}

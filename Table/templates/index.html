@@ -1,0 +1,101 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>T A B L</title>
+
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/fav/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/fav/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/fav/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'img/fav/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'img/fav/safari-pinned-tab.svg' %}" color="#5bbad5">
+
+    <link type="text/css" href="{% static 'plugin/table.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/material-components-web.min.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/pure-min.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/custom.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="table-app__title">
+        <h2>Inframine</h2>
+    </header>
+
+    <main>
+        <div class="table-app__wrapper">
+            <table id="root" class="table-app__table">
+            </table>
+            <div class="table-app__col-action">
+                <i class="mdc-icon-toggle material-icons" role="button"
+                   aria-label="Delete column" tabindex="0">
+                   delete_forever
+                </i>
+                <i class="mdc-icon-toggle material-icons" role="button"
+                   aria-label="Edit column name" tabindex="0">
+                    edit
+                </i>
+            </div>
+            <div class="table-app__row-action">
+                <i class="mdc-icon-toggle material-icons" role="button"
+                    aria-label="Delete row" tabindex="0">
+                    delete_forever
+                </i>
+            </div>
+        </div>
+        <div class="table-app__footer">
+            <button id="save" class="button-success pure-button">Сохранить</button>
+            <button id="add_row" class="pure-button pure-button-primary">Добавить строку</button>
+            <button id="add_col" class="pure-button pure-button-primary">Добавить столбец</button>
+        </div>
+
+        <form id="save-form" method="post"  action="">
+            {% csrf_token %}
+            {{json_form}}
+        </form>
+
+        <form id="add-row-form" action="{% url 'add_row' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" value="{{pattern}}" name="add_row">
+        </form>
+
+        <form id="add-col-form" action="{% url 'add_col' %}" method="POST">
+            {% csrf_token %}
+            {{form.add_column}}
+        </form>
+
+        <form id="del-col-form" action="{% url 'delete_cols' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="del_col">
+            <input type="hidden" name="del_col_list">
+        </form>
+
+        <form id="del-row-form" method="POST">
+            {% csrf_token %}
+            <input type="hidden" value="{{pattern}}" name="del_row">      
+        </form>
+    
+        
+    </main>
+
+
+    <!-- JS scripts -->
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" charset="utf8" src="{% static 'js/material-components-web.min.js' %}"></script>
+    <script type="text/javascript" charset="utf8" src="{% static 'plugin/table.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+    <script type="text/javascript">
+        var _root = {{ table|safe }};
+        var cols = {{ col_list|safe }}
+        var id_all = {{ id_list }}
+    </script>
+</body>
+
+</html>

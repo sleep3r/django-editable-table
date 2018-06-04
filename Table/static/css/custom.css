@@ -1,0 +1,233 @@
+@font-face {
+	font-family: 'Material Icons';
+	font-style: normal;
+	font-weight: 400;
+	src: url(/static/fonts/MaterialIcons-Regular.woff2) format('woff2'),
+		 url(/static/fonts/MaterialIcons-Regular.woff) format('woff'),
+		 url(/static/fonts/MaterialIcons-Regular.ttf) format('truetype');
+}
+.material-icons {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	  /* Support for all WebKit browsers. */
+	-webkit-font-smoothing: antialiased;
+	/* Support for Safari and Chrome. */
+	text-rendering: optimizeLegibility;
+  
+	/* Support for Firefox. */
+	-moz-osx-font-smoothing: grayscale;
+}
+@font-face {
+	font-family: 'Lora';
+	font-style: normal;
+	font-weight: 700;
+	src: url(/static/fonts/Lora-Bold.woff2) format('woff2'),
+		 url(/static/fonts/Lora-Bold.woff) format('woff'),
+		 url(/static/fonts/Lora-Bold.ttf) format('truetype');
+}
+@font-face {
+	font-family: 'Lora';
+	font-style: italic;
+	font-weight: 700;
+	src: url(/static/fonts/Lora-BoldItalic.woff2) format('woff2'),
+		 url(/static/fonts/Lora-BoldItalic.woff) format('woff'),
+		 url(/static/fonts/Lora-BoldItalic.ttf) format('truetype');
+}
+@font-face {
+	font-family: 'Lora';
+	font-style: normal;
+	font-weight: 400;
+	src: url(/static/fonts/Lora-Regular.woff2) format('woff2'),
+		 url(/static/fonts/Lora-Regular.woff) format('woff'),
+		 url(/static/fonts/Lora-Regular.ttf) format('truetype');
+}
+@font-face {
+	font-family: 'Lora';
+	font-style: italic;
+	font-weight: 400;
+	src: url(/static/fonts/Lora-Italic.woff2) format('woff2'),
+		 url(/static/fonts/Lora-Italic.woff) format('woff'),
+		 url(/static/fonts/Lora-Italic.ttf) format('truetype');
+}
+@font-face {
+	font-family: 'Roboto';
+	font-style: italic;
+	font-weight: 400;
+	src: url(/static/fonts/Roboto-Italic.woff2) format('woff2'),
+		 url(/static/fonts/Roboto-Italic.woff) format('woff'),
+		 url(/static/fonts/Roboto-Italic.ttf) format('truetype');
+}
+  
+@font-face {
+	font-family: 'Roboto';
+	font-style: italic;
+	font-weight: 500;
+	src: local('Roboto Medium Italic'),
+	  local('Roboto-MediumItalic'),
+	  url(/static/fonts/Roboto-MediumItalic.woff2) format('woff2'),
+	  url(/static/fonts/Roboto-MediumItalic.woff) format('woff'),
+	  url(/static/fonts/Roboto-MediumItalic.ttf) format('truetype');
+}
+  
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	src: url(/static/fonts/Roboto-Regular.woff2) format('woff2'),
+		 url(/static/fonts/Roboto-Regular.woff) format('woff'),
+		 url(/static/fonts/Roboto-Regular.ttf) format('truetype');
+}
+  
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 500;
+	src: url(/static/fonts/Roboto-Medium.woff2) format('woff2'),
+		 url(/static/fonts/Roboto-Medium.woff) format('woff'),
+		 url(/static/fonts/Roboto-Medium.ttf) format('truetype');
+}
+main {
+	font-family: 'Roboto', sans-serif;
+}
+.table-app__title {
+	width: 100%;
+	padding: 30px 0;
+	position: relative;
+}
+.table-app__title h2 {
+	font-family: 'Lora', serif;
+	font-weight: 400;
+	font-size: 30pt;
+	margin: 0;
+}
+.table-app__wrapper, .table-app__table
+table th, table td, table tr {
+	font-family: inherit;
+}
+main, .table-app__title, .table-app__wrapper,
+.table-app__col-action {
+	display: flex;
+	position: relative;
+}
+.table-app__title, .table-app__wrapper,
+.table-app__col-action {
+	flex-direction: row;
+	justify-content: center;
+}
+main {
+	flex-direction: column;
+}
+.table-app__wrapper {
+	padding: 0 100px;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+.table-app__table {
+	width: auto;
+	margin: 30px 0;
+	min-width: 700px;
+}
+.table-app__col-action, .table-app__row-action {
+	position: absolute;
+	left: 0;
+	opacity: 0;
+	-webkit-transform: translate3d(0,0,0);
+}
+.table-app__col-action {
+	width: 90px;
+	top: 25px;
+	transition: opacity ease 110ms 0s, top ease 60ms 0s;
+}
+.table-app__row-action {
+	width: 50px;
+	top: 0px;
+	pointer-events: none;
+	transition: opacity ease 110ms 0s, left ease 60ms 0s;
+}
+.table-app__col-action::before {
+	top: -25%;
+	width: 170%;
+	height: 190%;
+	left: -35%;
+}
+.table-app__row-action::before {
+	top: -25%;
+	width: 200%;
+	height: 150%;
+	right: 0%;
+}
+.table-app__col-action::before,
+.table-app__row-action::before {
+	position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+	content: "";
+}
+.table-app__col-action:hover {
+	top: 0;
+	opacity: 1;
+	transition: opacity ease 110ms 0.6s, top ease 60ms 0.6s;
+}
+.table-app__row-action.active {
+	opacity: 1;
+	pointer-events: all;
+}
+.table-app__col-action:hover::before {
+	top: -25%;
+	height: 250%;
+}
+.table-app__col-action i:first-child,
+.table-app__row-action i:first-child {
+	color: #e53935;
+}
+.table-app__col-action i:last-child {
+	color: #0078e7;
+}
+.button-success {
+	background: rgb(28, 184, 65); /* this is a green */
+	color: white;
+	border-radius: 4px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+.mdc-icon-toggle {
+	font-size: 20px;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+}
+.table-app__footer {
+	position: relative;
+	text-align: center;
+	margin-top: 15px;
+}
+.table-app__footer button:first-child {
+	margin-right: 30px;
+}
+.table-app__footer button:last-child {
+	margin-left: 10px;
+}
+table th {
+	background-color: unset;
+	border: none;
+	padding: 0 20px;
+}
+table td {
+	font-weight: 400;
+}
+table th {
+	font-weight: 500;
+	text-transform: uppercase;
+}
+.has_input {
+	outline: 1px solid #6495ed;
+    box-shadow: 0px 0px 10px #6495ed;
+}
