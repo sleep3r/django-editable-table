@@ -1,5 +1,5 @@
 # Django-editable-table
 
+requirements:
 ```pip install jsonfield```
-# django-editable-table
-# editable-table
+
