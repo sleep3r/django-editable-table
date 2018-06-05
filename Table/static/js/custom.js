@@ -13,14 +13,20 @@ $(document).ready(function() {
 
     $("#save").click(function() {
         if ($('.has_input').length) $('.table-app__title').click();
-        $('#id_data').val(JSON.stringify(table_obj.serialize("asc")));
+        $('#id_data').val(JSON.stringify(table_obj.serialize().reverse()));
         $('#save-form').submit()
     });
     $("#add_row").click(function() {
         $("#add-row-form").submit()
     });
     $("#add_col").click(function() {
-        var name = prompt('Введите название столбца:');
+        var name,
+            z = 0;
+        do {
+            if (z>0) throwErr()
+            name = prompt('Введите название столбца:');
+            z++
+        } while (/^\d+$/.test(name) == true)
         $('input#id_add_column').val(name);
         $('#add-col-form').submit()
     });
@@ -38,11 +44,19 @@ $(document).ready(function() {
         }
     });
     $('.table-app__col-action i:last-child').click(function() {
+        var new_key,
+            k = 0;
         var old_ind = parseInt($(this).attr('col_ind'));
-        var new_key = prompt('Введите новое название столбца:');
+        do {
+            if (k>0) throwErr()
+            new_key = prompt('Введите новое название столбца:');
+            k++
+        } while (/^\d+$/.test(new_key) == true)
         var old_key = cols[old_ind];
         if (new_key) {
-            var obj = {};
+            var obj = {},
+                th_el;
+            th_el = $('th')[old_ind];
             $('th:nth-child('+(old_ind+1)+')').text(new_key);
             cols[cols.indexOf(old_key)] = new_key;
             for (name of cols) {
@@ -51,17 +65,19 @@ $(document).ready(function() {
                 else
                     obj[name] = table_obj.fields[old_key]
             }
-            table_obj.fields = obj
+            table_obj.fields = obj;
+            updateAct(th_el, col_act)
         }
     });
 
     for (col_name of cols) {
         fields[col_name] = { "class": "edit", "type": "string" }
     }
+    console.log(fields);
     for (i=0;i<_root.length;i++) {
         var tmp = [];
         for (var key in _root[i]) tmp.push(_root[i][key])
-        data.unshift(tmp)
+        data.unshift(tmp);
     }
     table_obj = new Table({
         id: "root",
@@ -76,12 +92,7 @@ $(document).ready(function() {
     });
 
     $('th').mouseover(function() {
-        var col = $(this);
-        var ind = $('th').index(this);
-        col_act.find('i:first-child').attr('del_col', ind);
-        col_act.find('i:last-child').attr('col_ind', ind);
-        var tmp = col.offset().left+col.outerWidth()/2;
-        setTimeout(function() {col_act.css('left', tmp-col_act.width()/2)+"px"}, 100)
+        updateAct(this, col_act)
     });
     $('tbody tr').mouseover(function() {
         var row = $(this),
@@ -101,3 +112,16 @@ $(document).ready(function() {
     });
     row_act.mouseleave(function() { row_act.removeClass('active') })
 });
+
+function throwErr() {
+    alert('Название столбца не может состоять только из цифр!')
+}
+
+function updateAct(arg, act_el) {
+    var col = $(arg);
+    var ind = $('th').index(arg);
+    act_el.find('i:first-child').attr('del_col', ind);
+    act_el.find('i:last-child').attr('col_ind', ind);
+    var tmp = col.offset().left+col.outerWidth()/2;
+    setTimeout(function() {act_el.css('left', tmp-act_el.width()/2)+"px"}, 100)
+}

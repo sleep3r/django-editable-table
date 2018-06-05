@@ -30,12 +30,13 @@ class HomeView(TemplateView):
         
         id_list = [row['id'] for row in self.model.objects.values('id')]
         
-        if len(table) != 0: col_list = list((table[0].keys()))
-        else: col_list = None
+        if len(table) != 0: 
+            col_list = list(table[0].keys())
+            pattern = json.dumps(dict.fromkeys(col_list, ""))
+        else: 
+            col_list = None
+            pattern = {}
         
-        if len(table) != 0: pattern = json.dumps(dict.fromkeys(list(table[0].keys()), ""))
-        else: pattern = {}
-
         return {'table': table, 'id_list': id_list, 'form': self.form, 'col_list': col_list, "pattern": pattern, "json_form": self.json_form}
 
     

@@ -113,13 +113,11 @@ main {
 table th, table td, table tr {
 	font-family: inherit;
 }
-main, .table-app__title, .table-app__wrapper,
-.table-app__col-action {
+main, .table-app__title, .table-app__col-action {
 	display: flex;
 	position: relative;
 }
-.table-app__title, .table-app__wrapper,
-.table-app__col-action {
+.table-app__title, .table-app__col-action {
 	flex-direction: row;
 	justify-content: center;
 }
@@ -127,14 +125,15 @@ main {
 	flex-direction: column;
 }
 .table-app__wrapper {
-	padding: 0 100px;
 	overflow-x: auto;
 	overflow-y: hidden;
 }
 .table-app__table {
-	width: auto;
-	margin: 30px 0;
+	width: unset;
+	margin: 30px auto 10px;
+	border-collapse: separate;
 	min-width: 700px;
+	padding: 0 100px 0 100px;
 }
 .table-app__col-action, .table-app__row-action {
 	position: absolute;
@@ -207,13 +206,16 @@ main {
 .table-app__footer {
 	position: relative;
 	text-align: center;
-	margin-top: 15px;
+	margin-top: 45px;
 }
 .table-app__footer button:first-child {
 	margin-right: 30px;
 }
 .table-app__footer button:last-child {
 	margin-left: 10px;
+}
+table td.edit {
+	padding: 0 15px;
 }
 table th {
 	background-color: unset;
