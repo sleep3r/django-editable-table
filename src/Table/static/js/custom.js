@@ -24,20 +24,20 @@ $(document).ready(function() {
             z = 0;
         do {
             if (z>0) throwErr()
-            name = prompt('Введите название столбца:');
+            name = prompt('Type new column name:');
             z++
         } while (/^\d+$/.test(name) == true)
         $('input#id_add_column').val(name);
         $('#add-col-form').submit()
     });
     $('.table-app__row-action i').click(function() {
-        if (confirm('Вы хотите удалить эту строку?')) {
+        if (confirm('Delete this row?')) {
             $('#del-row-form').attr('action', '/delete-row/'+$(this).attr('del_row')+'/');
             $('#del-row-form').submit()
         }
     });
     $('.table-app__col-action i:first-child').click(function() {
-        if (confirm('Вы хотите удалить этот столбец?')) {
+        if (confirm('Delete this column?')) {
             $('#del-col-form input:nth-child(2)').val(cols[$(this).attr('del_col')]);
             $('#del-col-form input:last-child').val(cols);
             $('#del-col-form').submit()
@@ -49,7 +49,7 @@ $(document).ready(function() {
         var old_ind = parseInt($(this).attr('col_ind'));
         do {
             if (k>0) throwErr()
-            new_key = prompt('Введите новое название столбца:');
+            new_key = prompt('Type new column name:');
             k++
         } while (/^\d+$/.test(new_key) == true)
         var old_key = cols[old_ind];
@@ -114,7 +114,7 @@ $(document).ready(function() {
 });
 
 function throwErr() {
-    alert('Название столбца не может состоять только из цифр!')
+    alert('Column name should not only contain digits!')
 }
 
 function updateAct(arg, act_el) {

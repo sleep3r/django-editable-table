@@ -1,10 +1,12 @@
-from django.shortcuts import render, redirect
-from Table.forms import JsonForm, TableForms
-from Table.models import JsonTable
-from django.views.generic import TemplateView, DeleteView, View
-from django.db import transaction
-
 import json
+
+from django.db import transaction
+from django.shortcuts import render, redirect
+from django.views.generic import TemplateView, DeleteView, View
+
+from .models import JsonTable
+from .forms import JsonForm, TableForms
+
 
 
 class HomeView(TemplateView):
@@ -26,7 +28,7 @@ class HomeView(TemplateView):
     
     @property
     def get_context_data(self, *args, **kwargs):
-        table = [json.loads(string['data']) for string in self.model.objects.values()]
+        table = [string['data'] for string in self.model.objects.values()]
         
         id_list = [row['id'] for row in self.model.objects.values('id')]
         
@@ -37,7 +39,15 @@ class HomeView(TemplateView):
             col_list = None
             pattern = {}
         
-        return {'table': table, 'id_list': id_list, 'form': self.form, 'col_list': col_list, "pattern": pattern, "json_form": self.json_form}
+        context = {
+        'table': table, 
+        'id_list': id_list, 
+        'form': self.form, 
+        'col_list': col_list, 
+        "pattern": pattern, 
+        "json_form": self.json_form
+        }
+        return context
 
     
     def get(self, request):
@@ -56,7 +66,8 @@ class DeleteRows(DeleteView):
             self.model.objects.create(data=json.loads(pattern))
             return redirect('home')
 
-        else: return super(DeleteRows, self).delete(request, *args, **kwargs)
+        else: 
+            return super(DeleteRows, self).delete(request, *args, **kwargs)
 
 
 class DeleteCols(View):

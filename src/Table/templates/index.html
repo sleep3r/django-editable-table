@@ -1,10 +1,10 @@
-{% load staticfiles %}
+{% load static %}
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>T A B L</title>
+    <title>New Table</title>
 
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +26,7 @@
 <body>
 
     <header class="table-app__title">
-        <h2>Inframine</h2>
+        <h2>Simple Django editable table</h2>
     </header>
 
     <main>
@@ -51,9 +51,9 @@
             </div>
         </div>
         <div class="table-app__footer">
-            <button id="save" class="button-success pure-button">Сохранить</button>
-            <button id="add_row" class="pure-button pure-button-primary">Добавить строку</button>
-            <button id="add_col" class="pure-button pure-button-primary">Добавить столбец</button>
+            <button id="save" class="button-success pure-button">Save</button>
+            <button id="add_row" class="pure-button pure-button-primary">Add row</button>
+            <button id="add_col" class="pure-button pure-button-primary">Add column</button>
         </div>
 
         <form id="save-form" method="post"  action="">
